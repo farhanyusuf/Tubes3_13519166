@@ -1,0 +1,18 @@
+- cd ke dir tubesnya
+- bikin virtual env : python -m venv ./env
+- cd env/Scripts
+- aktivasi venv nya : activate
+- install django : pip install django==3.2
+
+to run program :
+- cd ke src
+- python manage.py runserver
+
+to make app :
+- python manage.py startapp <appname>
+
+to sync your app :
+- type your app name in settings
+- python manage.py makemigrations
+- python manage.py migrate
+ 
