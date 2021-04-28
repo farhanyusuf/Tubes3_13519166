@@ -1,6 +1,7 @@
 from django.db import connection
 from .models import *
-import datetime
+from Task.models import *
+from datetime import datetime
 
 def keyWord_getTipe(keyWord):
     with connection.cursor() as cursor:
@@ -22,6 +23,13 @@ def task_getTask(task_id, tipe="*"): #tipe maksudnya: apa yang diminta user,, ka
         row = cursor.fetchone()
 
     return row
+
+def task_getTasks(tipe="*"):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT %s FROM Task_task" %tipe)
+        rows = cursor.fetchall()
+
+    return rows
 
 def task_getTaskDurasi(tgl_dari, tgl_ke, tipe="*"):
     str_tgl_dari = tgl_dari.strftime("%Y-%m-%d")

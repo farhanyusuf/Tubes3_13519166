@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .utils import *
 from django.db.utils import OperationalError
 from .models import KeyWord, Task
 import datetime
