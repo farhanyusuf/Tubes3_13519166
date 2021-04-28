@@ -1,8 +1,8 @@
 from django.db import models
-from django.db.models.fields import TextField
+from django.db.models.fields import TextField, DateField
 
 class Task(models.Model):
-    tanggal = models.TextField(blank=False)
+    tanggal = models.DateField(blank=False)
     kodematakuliah = models.TextField(blank=False)
     jenistugas = models.TextField(blank=False)
     topiktugas = models.TextField(blank=False)
