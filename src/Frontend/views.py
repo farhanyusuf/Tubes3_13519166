@@ -18,8 +18,8 @@ class Main(View):
     def post(self, request):
         msg1 = Message(name = "You", text = request.POST['message'])
         msg1.save()
-        # msg2 from function?
-        # msg2.save()
+        msg2 = Message(name = "Bot", text = "This bot cannot speak yet.")
+        msg2.save()
         return redirect(reverse('main'))
 
 class About(View):
