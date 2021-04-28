@@ -1,5 +1,6 @@
 from django.db import connection
 from .models import *
+import datetime
 
 def keyWord_getTipe(keyWord):
     with connection.cursor() as cursor:
@@ -15,12 +16,21 @@ def task_addTask(tgl, kode, jenis, topik): #db name: Task_task
 def task_deleteTask(task_id):
     Task.objects.filter(id=task_id).delete()
 
-def task_getTask(tipe, task_id):
+def task_getTask(task_id, tipe="*"): #tipe maksudnya: apa yang diminta user,, kalau kapan berarti minta tanggal dsb
     with connection.cursor() as cursor:
-        cursor.execute("SELECT * FROM Task_task WHERE id=\"%s\"" %task_id)
+        cursor.execute("SELECT %s FROM Task_task WHERE id=\"%s\"" %(tipe, task_id))
         row = cursor.fetchone()
 
     return row
+
+def task_getTaskDurasi(tgl_dari, tgl_ke, tipe="*"):
+    str_tgl_dari = tgl_dari.strftime("%Y-%m-%d")
+    str_tgl_ke = tgl_ke.strftime("%Y-%m-%d")
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT %s FROM Task_task WHERE tanggal>=DATE(\"%s\") AND tanggal <= DATE(\"%s\")" %(tipe,str_tgl_dari,str_tgl_ke))
+        rows = cursor.fetchall()
+    
+    return rows
 
 def kmpString (input_text, kata_penting):
     counter = repeatPatternCounter(kata_penting)
