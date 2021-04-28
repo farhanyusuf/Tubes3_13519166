@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # my own app
     'Task',
+    'Frontend',
 ]
 
 MIDDLEWARE = [
