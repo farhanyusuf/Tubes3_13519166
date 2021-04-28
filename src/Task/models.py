@@ -7,5 +7,8 @@ class Task(models.Model):
     jenistugas = models.TextField(blank=False)
     topiktugas = models.TextField(blank=False)
 
-
+class KeyWord(models.Model):
+    word = models.TextField(blank=False)
+    tipe = models.TextField(blank=False, default=None)
+    
 # Create your models here.
